@@ -6,10 +6,7 @@ function Home() {
   return (
     <div className="Home">
       <Navbar />
-<<<<<<< HEAD
-=======
       {/* Add other components here */}
->>>>>>> update
     </div>
   );
 }
