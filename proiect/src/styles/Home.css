@@ -1,0 +1,15 @@
+.Home {
+  text-align: center;
+}
+
+.Home-header {
+  background-color: #eaeaea;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.navbar a{
+  margin-left: auto;
+}
+
