@@ -8,14 +8,12 @@ function Calendar() {
   const [calendarEvents, setCalendarEvents] = useState([]);
 
   const handleEventAdd = ({ event }) => {
-    console.log("Event added:", event);
     if (event && event.title && event.start) {
         setCalendarEvents([...calendarEvents, event]);
     }
   };
 
   const handleDateSelect = (selectInfo) => {
-    console.log("Date selected:", selectInfo);
     const title = prompt("Enter event title:");
     if (title) {
       const calendarApi = selectInfo.view.calendar;
