@@ -1,4 +1,4 @@
-import './styles/Navbar.css';
+import '../styles/Navbar.css';
 import React, { useState, useRef, useEffect } from 'react';
 
 function Navbar() {
@@ -23,21 +23,21 @@ function Navbar() {
   }, []);
 
   return (
-    <div class ="navbar">
-      <div class ="left-side">
+    <div className ="navbar">
+      <div className ="left-side">
         <a href="Home.js">Logo</a>
       </div>
-      <div class ="center-side">
+      <div className ="center-side">
         <a href="#news">Week</a>
         <a href="#news">Month</a>
       </div>
-      <div class ="right-side">
-        <div class ="dropdown" ref={dropdownRef}>
-          <button type="button" class ="dropbtn" onClick={handleButtonClick}>
-            Account <i class ="fa fa-caret-down"></i>
+      <div className ="right-side">
+        <div className ="dropdown" ref={dropdownRef}>
+          <button type="button" className ="dropbtn" onClick={handleButtonClick}>
+            Account <i className ="fa fa-caret-down"></i>
           </button>
           {open && (
-            <div class ="dropdown-content">
+            <div className ="dropdown-content">
               <li><a href="#">Account</a></li>
               <li><a href="#">Settings</a></li>
               <li><a href="#">Log Out</a></li>
