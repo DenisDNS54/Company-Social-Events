@@ -1,32 +1,48 @@
 import './styles/Navbar.css';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 function Navbar() {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-  function toggleDropdown() {
-    setIsDropdownVisible(!isDropdownVisible);
-  }
+  const handleButtonClick = () => {
+    setOpen(!open);
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, []);
 
   return (
-    <div className="navbar">
-      <div className="left-side">
+    <div class ="navbar">
+      <div class ="left-side">
         <a href="Home.js">Logo</a>
       </div>
-      <div className="center-side">
+      <div class ="center-side">
         <a href="#news">Week</a>
         <a href="#news">Month</a>
       </div>
-      <div className="right-side">
-        <div className="dropdown">
-          <button className="dropbtn" onClick={toggleDropdown}>
-            Account <i className="fa fa-caret-down"></i>
+      <div class ="right-side">
+        <div class ="dropdown" ref={dropdownRef}>
+          <button type="button" class ="dropbtn" onClick={handleButtonClick}>
+            Account <i class ="fa fa-caret-down"></i>
           </button>
-          <div className={`dropdown-content ${isDropdownVisible ? 'show' : ''}`} id="dropdown-content">
-            <a href="#">Account</a>
-            <a href="#">Settings</a>
-            <a href="#">Log Out</a>
-          </div>
+          {open && (
+            <div class ="dropdown-content">
+              <li><a href="#">Account</a></li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="#">Log Out</a></li>
+            </div>
+          )}
         </div>
       </div>
     </div>
