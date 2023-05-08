@@ -27,23 +27,10 @@ function Navbar() {
       <div className ="left-side">
         <a href="Home.js">Logo</a>
       </div>
-      <div className ="center-side">
-        <a href="#news">Week</a>
-        <a href="#news">Month</a>
-      </div>
       <div className ="right-side">
-        <div className ="dropdown" ref={dropdownRef}>
-          <button type="button" className ="dropbtn" onClick={handleButtonClick}>
-            Account <i className ="fa fa-caret-down"></i>
-          </button>
-          {open && (
-            <div className ="dropdown-content">
-              <li><a href="#">Account</a></li>
-              <li><a href="#">Settings</a></li>
-              <li><a href="#">Log Out</a></li>
-            </div>
-          )}
-        </div>
+        <a href="#">Account</a>
+        <a href="#">Settings</a>
+        <a href="#">Log Out</a>
       </div>
     </div>
   );
