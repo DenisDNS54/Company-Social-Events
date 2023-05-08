@@ -2,13 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: #333333;
   height: 5vh;
 }
 
 .navbar a {
   font-size: 18px;
-  color: white;
+  color: #ADD8E6;
   text-align: center;
   padding: 14px 20px;
   text-decoration: none;
@@ -16,8 +16,8 @@
 }
 
 .navbar a:hover{
-  background-color: white;
-  color: #333;
+  background-color: #ADD8E6;
+  color: #333333;
 }
 
 .left-side{
