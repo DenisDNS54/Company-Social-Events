@@ -2,34 +2,53 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
-export const Login = (props) => {
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+function Login() {
 
-    async function handleSubmit(e){
+    const history=useNavigate();
+    const [email,setEmail]=useState('')
+    const [password,setPassword]=useState('')
+
+    async function submit(e){
         e.preventDefault();
 
         try {
-            await axios.post("http://localhost:3000/", {
-                email, pass
+            
+            await axios.post("http://localhost:8000/", {
+                email, password
             })
-        } 
-        catch(e){
-            console.log(e);
+            .then(res=>{
+                if(res.data=="exist"){
+                    history("/home", {state:{id:email}})
+                }
+                else if(res.data=="notexist"){
+                    alert("This user does not exist!")
+                }
+            })
+            .catch(e=>{
+                alert("Wrong details!")
+                console.log(e);
+            })
+
+        } catch (e) {
+            console.log(e);           
         }
     }
 
     return (
-        <div className="auth-form-container">
-            <h2>Login</h2>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <label htmlFor="email">email</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="youremail@gmail.com" id="email" name="email" />
-                <label htmlFor="password">password</label>
-                <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <button type="submit" onClick={handleSubmit} className="btn">Log In</button>
+        <div className="login">
+            <h1>Log In</h1>
+            <form action="POST">
+                <input type="email" onChange={(e) => { setEmail(e.target.value) }} name="Email" id="" />
+                <input type="password" onChange={(e) => { setPassword(e.target.value) }} name="Password" id="" />
+
+                <input type="submit" onClick={submit}/>
             </form>
-            <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
+
+            <br /><p>OR</p><br />
+
+            <Link to="/signup">Sign Up Page</Link>
         </div>
     )
 }
+
+export default Login;

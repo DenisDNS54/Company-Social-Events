@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './styles/App.css';
 import { Login } from "./Login";
-import { Register } from "./Register";
+import { Signup } from "./Signup";
 //nou>
 //import 
 import Home from "./components/Home"
