@@ -1,12 +1,21 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
-    const handleSubmit = (e) => {
+    async function handleSubmit(e){
         e.preventDefault();
-        console.log(email);
+
+        try {
+            await axios.post("http://localhost:3000/", {
+                email, pass
+            })
+        } 
+        catch(e){
+            console.log(e);
+        }
     }
 
     return (
@@ -17,7 +26,7 @@ export const Login = (props) => {
                 <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="youremail@gmail.com" id="email" name="email" />
                 <label htmlFor="password">password</label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <button type="submit" className="btn">Log In</button>
+                <button type="submit" onClick={handleSubmit} className="btn">Log In</button>
             </form>
             <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
         </div>
