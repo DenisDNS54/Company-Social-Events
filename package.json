@@ -1,4 +1,18 @@
 {
   "dependencies": {
+    "axios": "^1.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.1.0",
+    "nodemon": "^2.0.22",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.1",
+<<<<<<< HEAD
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^3.3.1"
+=======
+    "react-scripts": "^5.0.1"
+>>>>>>> 1864b8f29225837ab5faf9f8d893b6d13b79a37b
   }
 }
