@@ -2,57 +2,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: #333333;
+  height: 5vh;
 }
 
 .navbar a {
   font-size: 18px;
-  color: white;
+  color: #ADD8E6;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 20px;
   text-decoration: none;
+  transition: 0.4s;
 }
 
-.dropdown {
-  position: relative;
-}
-
-.dropdown .dropbtn {
-  font-size: 18px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  cursor: pointer;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  z-index: 1;
-}
-
-.dropdown.show .dropdown-content {
-  display: block;
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: red;
+.navbar a:hover{
+  background-color: #ADD8E6;
+  color: #333333;
 }
 
 .left-side{
