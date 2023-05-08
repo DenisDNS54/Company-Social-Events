@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import './styles/App.css';
-import { Login } from "./Login";
-import { Register } from "./Register";
+//import React, { useState } from "react";
+//import './styles/App.css';
+//import { Login } from "./Login";
+//import { Register } from "./Register";
 
 const express = require("express")
 const collection = require("./mongo")
@@ -67,7 +67,7 @@ app.listen(8000,()=>{
   console.log("port connected");
 })
 
-function App() {
+/*function App() {
   const [currentForm, setCurrentForm] = useState('login');
 
   const toggleForm = (formName) => {
@@ -81,6 +81,6 @@ function App() {
       }
     </div>
   );
-}
+}*/
 
 export default App;
