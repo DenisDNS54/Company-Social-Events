@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+
 import './styles/App.css';
-import { Login } from "./Login";
-import { Signup } from "./Signup";
+
 //nou>
 //import 
-import Home from "./components/Home"
-import Login from "./components/Login"
-import Signup from "./components/Signup"
+import Home from "./Home"
+import Login from "./Login"
+import Signup from "./Signup"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
