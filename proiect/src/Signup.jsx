@@ -1,54 +1,133 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import React, { Component, useState } from "react";
 
-function Signup() {
+export default function SignUp() {
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState("");
+  const [secretKey, setSecretKey] = useState("");
 
-    const history=useNavigate();
-    const [email,setEmail]=useState('')
-    const [password,setPassword]=useState('')
+  const handleSubmit = (e) => {
+    if (userType == "Admin" && secretKey != "AdarshT") {
+      e.preventDefault();
+      alert("Invalid Admin");
+    } else {
+      e.preventDefault();
 
-    async function submit(e){
-        e.preventDefault();
-
-        try {
-            
-            await axios.post("http://localhost:8000/signup", {
-                email, password
-            })
-            .then(res=>{
-                if(res.data=="exist"){
-                    alert("This user already exists!")
-                }
-                else if(res.data=="notexist"){
-                    history("/home", {state:{id:email}})
-                }
-            })
-            .catch(e=>{
-                alert("Wrong details!")
-                console.log(e);
-            })
-
-        } catch (e) {
-            console.log(e);           
-        }
+      console.log(fname, lname, email, password);
+      fetch("http://localhost:5000/register", {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          fname,
+          email,
+          lname,
+          password,
+          userType,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data, "userRegister");
+          if (data.status == "ok") {
+            alert("Registration Successful");
+          } else {
+            alert("Something went wrong");
+          }
+        });
     }
+  };
 
-    return (
-        <div className="login">
-            <h1>Sign Up</h1>
-            <form action="POST">
-                <input type="email" onChange={(e) => { setEmail(e.target.value) }} name="Email" id="" /><br></br>
-                <input type="password" onChange={(e) => { setPassword(e.target.value) }} name="Password" id="" /><br></br>
+  return (
+    <div className="auth-wrapper">
+      <div className="auth-inner">
+        <form onSubmit={handleSubmit}>
+          <h3>Sign Up</h3>
+          <div>
+            Register As
+            <input
+              type="radio"
+              name="UserType"
+              value="User"
+              onChange={(e) => setUserType(e.target.value)}
+            />
+            User
+            <input
+              type="radio"
+              name="UserType"
+              value="Admin"
+              onChange={(e) => setUserType(e.target.value)}
+            />
+            Admin
+          </div>
+          {userType == "Admin" ? (
+            <div className="mb-3">
+              <label>Secret Key</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Secret Key"
+                onChange={(e) => setSecretKey(e.target.value)}
+              />
+            </div>
+          ) : null}
 
-                <input type="submit" onClick={submit}/>
-            </form>
+          <div className="mb-3">
+            <label>First name</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="First name"
+              onChange={(e) => setFname(e.target.value)}
+            />
+          </div>
 
-            <br /><p>OR</p><br />
+          <div className="mb-3">
+            <label>Last name</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Last name"
+              onChange={(e) => setLname(e.target.value)}
+            />
+          </div>
 
-            <Link to="/">Log In Page</Link>
-        </div>
-    )
+          <div className="mb-3">
+            <label>Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Enter password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <div className="d-grid">
+            <button type="submit" className="btn btn-primary">
+              Sign Up
+            </button>
+          </div>
+          <p className="forgot-password text-right">
+            Already registered <a href="/sign-in">sign in?</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  );
 }
-
-export default Signup;
