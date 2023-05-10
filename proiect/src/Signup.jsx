@@ -38,8 +38,8 @@ function Signup() {
         <div className="login">
             <h1>Sign Up</h1>
             <form action="POST">
-                <input type="email" onChange={(e) => { setEmail(e.target.value) }} name="Email" id="" />
-                <input type="password" onChange={(e) => { setPassword(e.target.value) }} name="Password" id="" />
+                <input type="email" onChange={(e) => { setEmail(e.target.value) }} name="Email" id="" /><br></br>
+                <input type="password" onChange={(e) => { setPassword(e.target.value) }} name="Password" id="" /><br></br>
 
                 <input type="submit" onClick={submit}/>
             </form>
