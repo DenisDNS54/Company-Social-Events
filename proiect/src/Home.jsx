@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Calendar from './components/Calendar';
 
-function Home() {
+function App() {
   return (
     <div className="Home">
       <Navbar />
@@ -13,4 +13,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default App;
