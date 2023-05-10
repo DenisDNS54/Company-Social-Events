@@ -46,7 +46,7 @@ function Signup() {
 
             <br /><p>OR</p><br />
 
-            <Link to="/">Log In Page</Link>
+            <Link to="/login">Log In Page</Link>
         </div>
     )
 }

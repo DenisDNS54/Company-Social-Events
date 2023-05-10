@@ -2,15 +2,15 @@ import './styles/Home.css';
 import React from 'react';
 import Navbar from './components/Navbar';
 import Calendar from './components/Calendar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
+function Home() {
   return (
     <div className="Home">
       <Navbar />
       <Calendar />
-      {/* Add other components here */}
     </div>
   );
 }
 
-export default App;
+export default Home;
