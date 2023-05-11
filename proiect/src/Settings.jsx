@@ -3,7 +3,9 @@ import Navbar from "./components/Navbar";
 import { useState } from 'react';
 import ReactSwitch from 'react-switch';
 
-function Settings(){
+function Settings(props){
+    const {toggleTheme, theme} = props;
+
     const options=[
         {
             header:{
@@ -15,6 +17,12 @@ function Settings(){
                     name: "Account",
                     description: "View and change things in your account",
                     tags: ["account", "username", "password", "email"],
+                },
+
+                {
+                    name: "Change password",
+                    description: "Change your current password",
+                    tags: ["password", "change"],
                 },
             ],
         },
@@ -107,6 +115,12 @@ function Settings(){
                                         <li className='settings-list-item'>
                                             <h3>{value.name}</h3>
                                             <p>{value.description}</p>
+                                            {value.name === 'Theme' && (
+                                                <div className='switch'>
+                                                    <label>{theme === "light" ? "Light Mode" : "Dark Mode"}</label>
+                                                    <ReactSwitch onChange={toggleTheme} checked={theme === "dark"}/>
+                                                </div>
+                                            )}
                                         </li>
                                     </ul>
                                 </div>

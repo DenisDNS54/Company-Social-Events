@@ -16,14 +16,14 @@ function App() {
   };
 
   return (
-    <ThemeContext.Provider>
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
       <div className="App" id={theme}>
         <Router>
           <Routes>
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/" element={<Home/>}/>
-            <Route path="/settings" element={<Settings/>}/>
+            <Route path="/settings" element={<Settings toggleTheme={toggleTheme} theme={theme}/>}/>
           </Routes>
         </Router>
       </div>
