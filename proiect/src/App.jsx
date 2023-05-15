@@ -1,34 +1,6 @@
 
-import './styles/App.css';
-
-//nou>
-//import 
-import Home from "./Home"
-import Login from "./components/login.component"
-import Signup from "./components/signup.component"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-
-function App() {
-
-  return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login/>}/>
-          <Route path="/signup" element={<Signup/>}/>
-          <Route path="/home" element={<Home/>}/>
-        </Routes>
-      </Router>
-    </div>
-  );
-}
-
-export default App;
-/*
 import React from 'react'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import './App.css'
+import './styles/App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 import Login from './components/login.component'
@@ -76,6 +48,5 @@ function App() {
 
 export default App
 
-app pentru log in register
+// app pentru log in register
 
-*/
