@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
-import App from './App';
+//To change the start point of the app to Log In, change line 5 to: import App from './App';
+import App from './Home';
 import reportWebVitals from './reportWebVitals';
 
 
