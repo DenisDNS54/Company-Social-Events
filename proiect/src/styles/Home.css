@@ -1,3 +1,17 @@
 .Home {
-    text-align: center;
-  }
+  text-align: center;
+}
+
+.filter-container{
+  position: absolute;
+  left: 0;
+  width: 15%;
+  height: 90%;
+  background-color: #DDD8E6;
+}
+
+.calendar-container{
+  position: absolute;
+  right: 0;
+  width: 85%;
+}

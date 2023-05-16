@@ -7,7 +7,12 @@ function Home() {
   return (
     <div className="Home">
       <Navbar />
-      <Calendar />
+      <div className='filter-container'>
+        
+      </div>
+      <div className='calendar-container'>
+        <Calendar />
+      </div>
     </div>
   );
 }
