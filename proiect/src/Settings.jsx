@@ -1,8 +1,7 @@
 import './styles/Settings.css'
 import Navbar from "./components/Navbar";
 import React, { useState } from 'react';
-import { Switch } from "react-native";
-import { EventRegister } from "react-native-event-listeners";
+import ReactSwitch from "react-switch";
 
 function Settings(props){
     const [theme, setTheme] = useState(false);
@@ -119,10 +118,7 @@ function Settings(props){
                                             {value.name === 'Theme' && (
                                                 <div className='switch'>
                                                     <label>{theme === "light" ? "Light Mode" : "Dark Mode"}</label>
-                                                    <Switch value={theme} onValueChange={() => {
-                                                        setTheme((value) => !value);
-                                                        EventRegister.emit("changeTheme", theme);
-                                                    }}/>
+                                                    <ReactSwitch value={theme} onChange={() => (theme === "light" ? "dark" : "light")}/>
                                                 </div>
                                             )}
                                         </li>
