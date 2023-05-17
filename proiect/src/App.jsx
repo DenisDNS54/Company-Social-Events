@@ -1,11 +1,12 @@
-import "./styles/App.css"
-import Home from "./Home"
-import Login from "./Login"
-import Signup from "./Signup"
-import Settings from './Settings';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { createContext, useEffect, useState, useContext } from "react";
-import { ThemeContextProvider, useThemeContext } from "./context/ThemeContext";
+
+import React from 'react'
+import './styles/App.css'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+
+import Login from './components/login_component'
+import SignUp from './components/signup_component'
+import UserDetails from './components/userDetails'
+import ImageUpload from './components/imageUpload.'
 
 function App() {
   const {contextTheme, setContextTheme} = useThemeContext()
@@ -15,8 +16,21 @@ function App() {
         setContextTheme((state) => (state === "light" ? "dark" : "light"))
         setChecked(nextChecked)
     };
-
   return (
+    <Router>
+      <div className="App">
+        <div className="auth-wrapper">
+          
+            <Routes>
+              <Route exact path="/" element={<Login />} />
+              <Route path="/sign-in" element={<Login />} />
+              <Route path="/sign-up" element={<SignUp />} />
+            </Routes>
+          
+        </div>
+      </div>
+    </Router>
+  )
     <ThemeContextProvider>
       <div className="App" id={contextTheme}>
         <Router>
@@ -32,4 +46,7 @@ function App() {
   );
 }
 
-export default App;
+export default App
+
+// app pentru log in register
+

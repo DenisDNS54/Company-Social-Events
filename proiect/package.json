@@ -9,6 +9,8 @@
   },
   "private": true,
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@fullcalendar/daygrid": "^6.1.7",
     "@fullcalendar/interaction": "^6.1.7",
     "@fullcalendar/react": "^6.1.7",
@@ -22,6 +24,7 @@
     "react-dom": "^18.2.0",
     "react-native": "^0.71.8",
     "react-native-event-listeners": "^1.0.7",
+    "react-paginate": "^8.2.0",
     "react-router-dom": "^6.11.1",
     "react-scripts": "^5.0.1",
     "react-switch": "^7.0.0",
