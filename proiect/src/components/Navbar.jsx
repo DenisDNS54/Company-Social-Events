@@ -9,7 +9,7 @@ function Navbar() {
         </div>
         <div className ="right-side">
           <a href="/settings">Settings</a>
-          <a href="/login">Log Out</a>
+          <a href="/sign-in">Log Out</a>
         </div>
     </div>
   );

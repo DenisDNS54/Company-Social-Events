@@ -23,13 +23,17 @@
 }
 
 .auth-wrapper{
-  background-color: rgba(155, 155, 155, 0.6);
+  background-color: rgba(155, 155, 155, 0.4);
   border-color: #9b9b9b;
   border-radius: 10px;
   border: solid 2px;
   width: 40vh;
   justify-content: center;
   display: flex;
+  position: absolute; 
+  left: 50%; 
+  top: 50%; 
+  transform: translate(-50%, -50%);
 }
 
 .auth-inner{
@@ -60,11 +64,11 @@ p{
 
 button {
   border: none;
-  background-color: #333333;
+  background-color: #ADD8E6;
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
-  color: #ADD8E6;
+  color: #333333;
   transition: 0.4s;
   margin-left: 13vh;
   margin-top: 2vh;
@@ -72,8 +76,8 @@ button {
 }
 
 .btn:hover{
-  background-color: #ADD8E6;
-  color: #333333;
+  background-color: #333333;
+  color: #ADD8E6;
 }
 
 input[type=text],[type=email],[type=password]{
