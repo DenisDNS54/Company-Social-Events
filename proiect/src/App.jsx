@@ -3,8 +3,10 @@ import React from 'react'
 import './styles/App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
-import Login from './components/login.component'
-import SignUp from './components/signup.component'
+import Login from './components/login_component'
+import SignUp from './components/signup_component'
+import UserDetails from './components/userDetails'
+import ImageUpload from './components/imageUpload.'
 
 function App() {
   return (
