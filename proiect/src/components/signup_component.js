@@ -50,7 +50,7 @@ export default function SignUp() {
         <form onSubmit={handleSubmit}>
           <h3>Sign Up</h3>
           <div>
-            Register As
+            <p>Register As
             <input
               type="radio"
               name="UserType"
@@ -65,6 +65,7 @@ export default function SignUp() {
               onChange={(e) => setUserType(e.target.value)}
             />
             Admin
+            </p>
           </div>
           {userType == "Admin" ? (
             <div className="mb-3">
@@ -123,8 +124,8 @@ export default function SignUp() {
               Sign Up
             </button>
           </div>
-          <p className="forgot-password text-right">
-            Already registered <a href="/sign-in">sign in?</a>
+          <p className="signup-p">
+            Already registered? <a href="/sign-in">Sign in</a>.
           </p>
         </form>
       </div>

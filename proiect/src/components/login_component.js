@@ -78,8 +78,8 @@ export default function Login() {
               Submit
             </button>
           </div>
-          <p className="forgot-password text-right">
-            <a href="/sign-up">Sign Up</a>
+          <p className="login-p">
+            Don't have an account? <a href="/sign-up">Sign Up</a>.
           </p>
         </form>
       </div>
