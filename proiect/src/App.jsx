@@ -5,20 +5,20 @@ import Signup from "./Signup"
 import Settings from './Settings';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { createContext, useEffect, useState, useContext } from "react";
-
-
-export const ThemeContext = createContext(null);
+import { ThemeContextProvider, useThemeContext } from "./context/ThemeContext";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const {contextTheme, setContextTheme} = useThemeContext()
 
-    const toggleTheme=() => {
-    setTheme((curr) => (curr === "light" ? "dark" : "light"));
-  };
+    const [checked, setChecked] = useState(false)
+    const handleSwitch = (nextChecked) => {
+        setContextTheme((state) => (state === "light" ? "dark" : "light"))
+        setChecked(nextChecked)
+    };
 
   return (
-    <ThemeContext.Provider value={theme === "true" ? theme.dark : theme.light}>
-      <div className="App" id={theme}>
+    <ThemeContextProvider>
+      <div className="App" id={contextTheme}>
         <Router>
           <Routes>
             <Route path="/login" element={<Login/>}/>
@@ -28,7 +28,7 @@ function App() {
           </Routes>
         </Router>
       </div>
-    </ThemeContext.Provider>
+    </ThemeContextProvider>
   );
 }
 

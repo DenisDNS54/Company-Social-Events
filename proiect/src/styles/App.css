@@ -1,22 +1,22 @@
-.App{
+.App {
   width: 100vw;
   height: 100vh;
 }
 
-#light{
+#light {
   background-color: #F2F2F2;
   color: #333333;
 }
 
-#dark{
+#dark {
   background-color: #333333;
   color: #F2F2F2;
 }
 
-#light .navbar{
+#light .navbar {
   background-color: #333333;
 }
 
-#dark .navbar{
+#dark .navbar {
   background-color: #333333;
 }

@@ -4,13 +4,14 @@ import './styles/index.css';
 //To change the start point of the app to Log In, change line 5 to: import App from './App';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeContextProvider } from './context/ThemeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <ThemeContextProvider>
     {/* Also change line 11 with '<App />' */}
     <App />
-  </React.StrictMode>
+  </ThemeContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
