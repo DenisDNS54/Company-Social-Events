@@ -5,13 +5,25 @@
 .filter-container{
   position: absolute;
   left: 0;
-  width: 15%;
-  height: 90%;
-  
+  width: 15.5%;
+  height: 93%;
+  margin-top: 1vh;
+  margin-left: 0.5vh;
+  background-color: rgba(155, 155, 155, 0.4);
+  border-color: #9b9b9b;
+  border-radius: 10px;
+  border: solid 2px;
 }
 
 .calendar-container{
   position: absolute;
   right: 0;
-  width: 85%;
+  width: 83%;
+  height: 93%;
+  margin-top: 1vh;
+  margin-right: 0.5vh;
+  background-color: rgba(155, 155, 155, 0.4);
+  border-color: #9b9b9b;
+  border-radius: 10px;
+  border: solid 2px;
 }

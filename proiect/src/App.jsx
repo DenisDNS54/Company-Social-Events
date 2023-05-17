@@ -5,48 +5,23 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 import Login from './components/login_component'
 import SignUp from './components/signup_component'
-import UserDetails from './components/userDetails'
-import ImageUpload from './components/imageUpload.'
+import Settings from './Settings'
+import Home from './Home'
 
 function App() {
-  const {contextTheme, setContextTheme} = useThemeContext()
-
-    const [checked, setChecked] = useState(false)
-    const handleSwitch = (nextChecked) => {
-        setContextTheme((state) => (state === "light" ? "dark" : "light"))
-        setChecked(nextChecked)
-    };
   return (
     <Router>
       <div className="App">
-        <div className="auth-wrapper">
-          
-            <Routes>
-              <Route exact path="/" element={<Login />} />
-              <Route path="/sign-in" element={<Login />} />
-              <Route path="/sign-up" element={<SignUp />} />
-            </Routes>
-          
-        </div>
+          <Routes>
+            <Route exact path="/" element={<Login />} />
+            <Route path="/sign-in" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/settings" element={<Settings />}/>
+            <Route path="/home" element={<Home/>}/>
+          </Routes>        
       </div>
     </Router>
-  )
-    <ThemeContextProvider>
-      <div className="App" id={contextTheme}>
-        <Router>
-          <Routes>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/signup" element={<Signup/>}/>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/settings" element={<Settings />}/>
-          </Routes>
-        </Router>
-      </div>
-    </ThemeContextProvider>
   );
 }
 
 export default App
-
-// app pentru log in register
-

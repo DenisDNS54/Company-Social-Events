@@ -8,8 +8,10 @@
     margin-right: 7rem;
     border-style: solid;
     border-width: 3px;
+    background-color: rgba(155, 155, 155, 0.4);
+    border-color: #9b9b9b;
     border-radius: 10px;
-    border-color: #ADD8E6;
+    border: solid 2px;
 }
 
 .main h1{

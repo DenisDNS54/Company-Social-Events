@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <div className ="navbar">
         <div className ="left-side">
-          <a href="/">Logo</a>
+          <a href="/home">Logo</a>
         </div>
         <div className ="right-side">
           <a href="/settings">Settings</a>
