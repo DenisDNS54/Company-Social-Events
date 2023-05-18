@@ -27,7 +27,7 @@
   border-color: #9b9b9b;
   border-radius: 10px;
   border: solid 2px;
-  width: 40vh;
+  width: 50vh;
   justify-content: center;
   display: flex;
   position: absolute; 
@@ -37,7 +37,7 @@
 }
 
 .auth-inner{
-  width: 35vh;
+  width: 45vh;
 }
 
 .auth-inner label{
@@ -46,7 +46,7 @@
 }
 
 p{
-  margin-left: 5vh;
+  margin-left: 8.5vh;
 }
 
 .login-p{
@@ -54,11 +54,11 @@ p{
 }
 
 .signup-p{
-  margin-left: 6.5vh;
+  margin-left: 8vh;
 }
 
 .auth-inner h3{
-  margin-left: 13.5vh;
+  margin-left: 17vh;
   font-size: 29px;
 }
 
@@ -70,7 +70,7 @@ button {
   cursor: pointer;
   color: #333333;
   transition: 0.4s;
-  margin-left: 13vh;
+  margin-left: 17vh;
   margin-top: 2vh;
   font-size: 20px;
 }
