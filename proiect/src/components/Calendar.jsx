@@ -53,6 +53,36 @@ function Calendar() {
     args.element.style.borderStyle = "solid";
   };
 
+  const createEvent = async (eventData) => {
+    try {
+      const response = await fetch("/calendar/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(eventData),
+      });
+
+      if (response.ok) {
+        const newEvent = await response.json();
+        setLocalData([...localData, newEvent]);
+      } else {
+        console.error("Failed to create event");
+      }
+    } catch (error) {
+      console.error("Failed to create event:", error);
+    }
+  };
+
+  const handleEventAdd = (args) => {
+    const eventData = {
+      ...args.event,
+      Id: localData.length + 1, // Generate a new ID for the event
+    };
+
+    createEvent(eventData);
+  };
+
   const handleEventClick = (args) => {
     setSelectedEvent(args.event);
   };

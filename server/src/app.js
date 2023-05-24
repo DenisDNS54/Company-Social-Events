@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const EventDetails = require("./eventDetails");
 const mongoose = require("mongoose");
 app.use(express.json());
 const cors = require("cors");
@@ -28,9 +29,24 @@ mongoose
 
 require("./userDetails");
 require("./imageDetails");
+require("./eventDetails");
 
 const User = mongoose.model("UserInfo");
 const Images = mongoose.model("ImageDetails");
+const Event = mongoose.model("EventDetails");
+
+app.post("/calendar/events", async (req, res) => {
+  const eventData = req.body;
+
+  try {
+    const event = await Event.create(eventData);
+    res.status(201).json(event);
+  } catch (error) {
+    console.error('Error creating event:', error);
+    res.status(500).json({ error: 'Failed to create event' });
+  }
+});
+
 app.post("/register", async (req, res) => {
   const { fname, lname, email, password, userType } = req.body;
 
