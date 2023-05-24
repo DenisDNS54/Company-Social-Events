@@ -12,7 +12,9 @@ function Home() {
         <Filters />
       </div>
       <div className='calendar-container'>
-        <Calendar />
+        <div className='calendar-wrapper'>
+          <Calendar />
+        </div>
       </div>
     </div>
   );

@@ -1,101 +1,97 @@
-import React, { useState, useRef } from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
+import React, { useState } from "react";
+import {
+  Inject,
+  ScheduleComponent,
+  Day,
+  Week,
+  WorkWeek,
+  Month,
+  Agenda,
+  DragAndDrop,
+  Resize,
+} from "@syncfusion/ej2-react-schedule";
+import CustomEventEditor from "./CustomEventEditor";
 
 function Calendar() {
-  const calendarRef = useRef(null);
-  const [calendarEvents, setCalendarEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [localData, setLocalData] = useState([
+    {
+      Id: 1,
+      Title: "Test",
+      EventCategory: "Team-Building",
+      Start: new Date(2023, 4, 22, 6, 30),
+      End: new Date(2023, 4, 22, 10, 30),
+      IsAllDay: false,
+      IsReadOnly: false,
+      Location: "location",
+    },
+    {
+      Id: 2,
+      Title: "Test",
+      EventCategory: "Game-Night",
+      Start: new Date(2023, 4, 24, 6, 30),
+      End: new Date(2023, 4, 24, 10, 30),
+      IsAllDay: false,
+      IsReadOnly: true,
+    },
+  ]);
 
-  const handleEventAdd = ({ event }) => {
-    if (event && event.title && event.start) {
-      setCalendarEvents([...calendarEvents, event]);
-    }
+  const fields = {
+    subject: { name: "Title", default: "No title." },
+    startTime: { name: "Start" },
+    endTime: { name: "End" },
+    location: { name: "Location", default: "No location selected" },
   };
 
-  const handleDateSelect = (selectInfo) => {
-    const title = prompt("Enter event title:");
-    if (title) {
-      const calendarApi = selectInfo.view.calendar;
-      calendarApi.addEvent({
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay,
-      });
-    }
+  const eventSettings = { dataSource: localData, fields: fields };
+
+  const eventRendered = (args) => {
+    args.element.style.backgroundColor = "#ADD8E6";
+    args.element.style.color = "#333333";
+    args.element.style.borderColor = "#FF0000";
+    args.element.style.borderWidth = "2px";
+    args.element.style.borderStyle = "solid";
   };
 
-  const handleTodayButtonClick = () => {
-    const calendarApi = calendarRef.current.getApi();
-    calendarApi.today();
+  const handleEventClick = (args) => {
+    setSelectedEvent(args.event);
   };
 
-  const handleDayGridMonthButtonClick = () => {
-    const calendarApi = calendarRef.current.getApi();
-    calendarApi.changeView("dayGridMonth");
+  const handleSaveClick = (updatedEvent) => {
+    console.log("Saving event:", updatedEvent);
+    const updatedEvents = localData.map((event) =>
+      event.Id === updatedEvent.Id ? updatedEvent : event
+    );
+    setLocalData(updatedEvents);
+    setSelectedEvent(null);
   };
 
-  const handleTimeGridWeekButtonClick = () => {
-    const calendarApi = calendarRef.current.getApi();
-    calendarApi.changeView("timeGridWeek");
+  const handleCancelClick = () => {
+    setSelectedEvent(null);
   };
 
-  const handleTimeGridDayButtonClick = () => {
-    const calendarApi = calendarRef.current.getApi();
-    calendarApi.changeView("timeGridDay");
-  };
-
-  const handleDateRangeChange = (rangeInfo) => {
-    const { startStr, endStr } = rangeInfo;
-    const newEvents = [];
-
-    // TODO: Fetch events that fall within the new date range
-
-    setCalendarEvents(newEvents);
+  const editorTemplate = (props) => {
+    return selectedEvent ? (
+      <CustomEventEditor
+        event={selectedEvent}
+        onSave={handleSaveClick}
+        onCancel={handleCancelClick}
+        {...props}
+      />
+    ) : null;
   };
 
   return (
-    <div>
-      <FullCalendar
-        ref={calendarRef}
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        initialView={"dayGridMonth"}
-        customButtons={{
-          customTodayButton: {
-            text: "Today",
-            click: handleTodayButtonClick,
-          },
-          customDayGridMonthButton: {
-            text: "Month",
-            click: handleDayGridMonthButtonClick,
-          },
-          customTimeGridWeekButton: {
-            text: "Week",
-            click: handleTimeGridWeekButtonClick,
-          },
-          customTimeGridDayButton: {
-            text: "Day",
-            click: handleTimeGridDayButtonClick,
-          },
-        }}
-        headerToolbar={{
-          start: "customTodayButton prev next",
-          center: "title",
-          end: "customTimeGridDayButton customTimeGridWeekButton customDayGridMonthButton",
-        }}
-        height={"90vh"}
-        events={calendarEvents}
-        selectable={true}
-        selectMirror={true}
-        dayMaxEvents={true}
-        weekends={true}
-        datesSet={handleDateRangeChange}
-        select={handleDateSelect}
-        eventAdd={handleEventAdd}
-      />
-    </div>
+    <ScheduleComponent
+      height="122%"
+      width="100%"
+      eventSettings={eventSettings}
+      eventRendered={eventRendered}
+      eventClick={handleEventClick}
+      editorTemplate={editorTemplate}
+    >
+      <Inject services={[Day, Week, WorkWeek, Month, Agenda, DragAndDrop, Resize]} />
+    </ScheduleComponent>
   );
 }
 

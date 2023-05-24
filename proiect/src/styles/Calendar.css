@@ -1,7 +1,17 @@
-.custom-calendar .fc-toolbar-title {
-    font-size: 16px;
-  }
-  
-  .custom-calendar .fc-header-toolbar button {
-    font-size: 12px;
-  }
+body{
+  margin: 8px;
+}
+
+.e-schedule .e-appointment-details{
+  padding: 0 !important;
+}
+
+.template-wrap{
+  background: #ADD8E6;
+  padding-left: 20px;
+  padding-right: 5px;
+  padding-top: 7px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
