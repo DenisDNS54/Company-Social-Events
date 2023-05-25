@@ -9,46 +9,46 @@ function Calendar() {
   const calendarRef = useRef(null);
   const [calendarEvents, setCalendarEvents] = useState([]);
   const [title, setTitle] = useState("");
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
   const [location, setLocation] = useState("");
   const [category, setCategory] = useState("");
 
-  useEffect(() => {
-    // Fetch events from MongoDB database and set them in calendarEvents state
-    fetchEvents();
-  }, []);
-
-  const fetchEvents = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/api/events");
-      setCalendarEvents(response.data);
-    } catch (error) {
-      console.error("Error fetching events:", error);
-    }
-  };
-
-  const addEventToDatabase = async (event) => {
-    try {
-      await axios.post("http://localhost:5000/api/events", event);
-    } catch (error) {
-      console.error("Error adding event:", error);
-    }
-  };
-
-  const handleEventAdd = async ({ event }) => {
-    if (event && event.title && event.start) {
-      setCalendarEvents([...calendarEvents, event]);
-      try {
-        await axios.post("http://localhost:5000/api/events", event);
-      } catch (error) {
-        console.error("Error adding event:", error);
-      }
-    }
+  const handleEventAdd = (e) => {
+      console.log(title, start, end, location, category);
+      fetch("http://localhost:5000/api/events", {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          title, 
+          start, 
+          end, 
+          location, 
+          category,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data, "eventAdd");
+          if (data.status == "ok") {
+            alert("Event Add Successful");
+          } else {
+            alert("Something went wrong");
+          }
+        });
   };
 
   const handleDateSelect = (selectInfo) => {
     setTitle("");
     setLocation("");
     setCategory("");
+    setStart("");
+    setEnd("");
 
     const title = prompt("Enter event title:");
     if (title) {
@@ -81,7 +81,7 @@ function Calendar() {
             location,
             category,
           };
-          addEventToDatabase(event);
+          handleEventAdd(event);
         }
       }
     }
