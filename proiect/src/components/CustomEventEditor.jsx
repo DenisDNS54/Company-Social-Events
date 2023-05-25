@@ -47,13 +47,6 @@ function CustomEventEditor({ event, onSave, onCancel }) {
           change={(e) => (event.EventCategory = e.value)}
         />
       </div>
-      <div className="event-field">
-        <label>Description:</label>
-        <textarea
-          value={event.Description}
-          onChange={(e) => (event.Description = e.target.value)}
-        />
-      </div>
       <div className="button-container">
         <button className="e-control e-btn" onClick={handleSaveClick}>
             Save

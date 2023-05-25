@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const EventDetails = require("./eventDetails");
 const mongoose = require("mongoose");
 app.use(express.json());
 const cors = require("cors");
@@ -35,15 +34,24 @@ const User = mongoose.model("UserInfo");
 const Images = mongoose.model("ImageDetails");
 const Event = mongoose.model("EventDetails");
 
-app.post("/calendar/events", async (req, res) => {
-  const eventData = req.body;
-
+app.get("/calendar/events", async (req, res) => {
   try {
-    const event = await Event.create(eventData);
-    res.status(201).json(event);
+    const events = await Event.find({});
+    res.json(events);
   } catch (error) {
-    console.error('Error creating event:', error);
-    res.status(500).json({ error: 'Failed to create event' });
+    console.error("Failed to fetch events:", error);
+    res.status(500).json({ error: "Failed to fetch events" });
+  }
+});
+
+app.post("/events", async (req, res) => {
+  try {
+    const eventData = req.body;
+    const event = await EventDetails.addEvent(eventData);
+    res.json({ status: "ok", data: event });
+  } catch (error) {
+    console.error("Failed to create event:", error);
+    res.status(500).json({ error: "Failed to create event" });
   }
 });
 
