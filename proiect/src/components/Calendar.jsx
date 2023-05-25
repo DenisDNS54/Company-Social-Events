@@ -19,7 +19,7 @@ function Calendar() {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get("/api/events");
+      const response = await axios.get("http://localhost:5000/api/events");
       setCalendarEvents(response.data);
     } catch (error) {
       console.error("Error fetching events:", error);
@@ -28,26 +28,20 @@ function Calendar() {
 
   const addEventToDatabase = async (event) => {
     try {
-      await axios.post("/api/events", event);
+      await axios.post("http://localhost:5000/api/events", event);
     } catch (error) {
       console.error("Error adding event:", error);
     }
   };
 
-  const events = [
-    {
-      title: "Test",
-      start: "2023-05-24",
-      end: "2023-05-24",
-      location: "Event Location",
-      category: "Event Category",
-    },
-  ];
-
-  const handleEventAdd = ({ event }) => {
+  const handleEventAdd = async ({ event }) => {
     if (event && event.title && event.start) {
       setCalendarEvents([...calendarEvents, event]);
-      addEventToDatabase(event);
+      try {
+        await axios.post("http://localhost:5000/api/events", event);
+      } catch (error) {
+        console.error("Error adding event:", error);
+      }
     }
   };
 
@@ -79,6 +73,15 @@ function Calendar() {
             location,
             category,
           });
+
+          const event = {
+            title,
+            start: selectInfo.startStr,
+            end: selectInfo.endStr,
+            location,
+            category,
+          };
+          addEventToDatabase(event);
         }
       }
     }
@@ -106,11 +109,7 @@ function Calendar() {
 
   const handleDateRangeChange = (rangeInfo) => {
     const { startStr, endStr } = rangeInfo;
-    const newEvents = [];
-
-    // TODO: Fetch events that fall within the new date range
-
-    setCalendarEvents(newEvents);
+    console.log("Selected range: ", startStr, " - ", endStr);
   };
 
   return (
@@ -143,7 +142,7 @@ function Calendar() {
           end: "customTimeGridDayButton customTimeGridWeekButton customDayGridMonthButton",
         }}
         height={"90vh"}
-        events={events}
+        events={calendarEvents}
         selectable={true}
         selectMirror={true}
         dayMaxEvents={true}

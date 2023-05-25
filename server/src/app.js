@@ -29,6 +29,37 @@ mongoose
 require("./userDetails");
 require("./imageDetails");
 
+const Event = require("./eventDetails");
+
+app.post("/api/events", async (req, res) => {
+  try {
+    const { title, start, end, location, category } = req.body;
+    const event = new Event({
+      title,
+      start,
+      end,
+      location,
+      category,
+    });
+    await event.save();
+    res.status(201).json(event);
+  } catch (error) {
+    console.error("Error adding event:", error);
+    res.status(500).json({ error: "Failed to add event" });
+  }
+});
+
+// Get all events
+app.get("/api/events", async (req, res) => {
+  try {
+    const events = await Event.find();
+    res.json(events);
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    res.status(500).json({ error: "Failed to fetch events" });
+  }
+});
+
 const User = mongoose.model("UserInfo");
 const Images = mongoose.model("ImageDetails");
 app.post("/register", async (req, res) => {
